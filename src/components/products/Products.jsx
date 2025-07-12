@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import Product from "../product/Product";
 import { Container, Row, Col } from "react-bootstrap";
 import { WishlistContext } from "../Context/WishlistContext.jsx";
 import { SearchContext } from "../Context/SearchContext";
+import Product from "./../product/Product.jsx"
 export default function Products() {
   const [data, setData] = useState([]);
   const { searchTerm } = useContext(SearchContext);
