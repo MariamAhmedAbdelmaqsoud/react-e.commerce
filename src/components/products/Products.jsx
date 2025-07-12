@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { WishlistContext } from "../Context/WishlistContext.jsx";
 import { SearchContext } from "../Context/SearchContext";
-import Product from "./../product/Product.jsx"
+// import Product from "./../product/Product.jsx"
 export default function Products() {
   const [data, setData] = useState([]);
   const { searchTerm } = useContext(SearchContext);
@@ -24,7 +24,7 @@ export default function Products() {
       <Row>
         {filteredProducts?.map((product) => (
           <Col md={4} className="mb-4" key={product.id}>
-            <Product product={product} onAddToWishlist={addToWishlist} />
+            {/* <Product product={product} onAddToWishlist={addToWishlist} /> */}
           </Col>
         ))}
       </Row>
