@@ -1,23 +1,28 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { WishlistContext } from "../Context/WishlistContext";
 import { FaHeart, FaRegHeart, FaStar } from "react-icons/fa";
 import { CartContext } from "../Context/CartContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../../Redux/wishlistSlice.js";
 
 export default function Product({ product }) {
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.wishlist);
+  const isInWishlist = wishlist.find((item) => item.id === product.id);
+
+  const toggleWishlist = () => {
+    if (isInWishlist) {
+      dispatch(removeFromWishlist(product.id));
+    } else {
+      dispatch(addToWishlist(product));
+    }
+  };
+
   const { cartItems, addToCart, increaseQuantity, decreaseQuantity } =
     useContext(CartContext);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
   const quantity = cartItem?.quantity || 0;
-
-  const { wishlist, addToWishlist, removeFromWishlist } =
-    useContext(WishlistContext);
-  const isInWishlist = wishlist.find((item) => item.id === product.id);
-
-  const toggleWishlist = () => {
-    isInWishlist ? removeFromWishlist(product.id) : addToWishlist(product);
-  };
 
   const navigate = useNavigate();
 

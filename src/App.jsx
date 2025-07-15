@@ -7,6 +7,7 @@ import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import CartPage from "./components/Cart/CartPage";
 
+
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<CartPage />} />
       </Routes>
+      
     </>
   );
 }

@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Col, Row } from "react-bootstrap";
-import { WishlistContext } from "../Context/WishlistContext.jsx";
+import { removeFromWishlist } from "../../Redux/wishlistSlice.js";
 
 export default function Wishlist() {
-  const { wishlist, removeFromWishlist } = useContext(WishlistContext);
+  const wishlist = useSelector((state) => state.wishlist);
+  const dispatch = useDispatch();
+
   return (
     <div className="mt-5">
       <h3 id="wishlist">Your Wishlist</h3>
@@ -25,7 +28,7 @@ export default function Wishlist() {
                 </p>
                 <button
                   className="btn btn-sm btn-danger mt-2"
-                  onClick={() => removeFromWishlist(item.id)}
+                  onClick={() => dispatch(removeFromWishlist(item.id))}
                 >
                   Remove from Wishlist
                 </button>
